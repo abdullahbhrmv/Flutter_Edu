@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:todo_app/constants/color.dart';
+import 'package:todo_app/constants/tasktype.dart';
+import 'package:todo_app/model/task.dart';
 import 'package:todo_app/screens/add_new_task.dart';
 import 'package:todo_app/todoitem.dart';
 
@@ -12,8 +14,44 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> todo = ["Study Lesson", "Run 5k", "Go to Party"];
-  List<String> complated = ["Game meetup", "Take out trash"];
+  // List<String> todo = ["Study Lesson", "Run 5k", "Go to Party"];
+  // List<String> complated = ["Game meetup", "Take out trash"];
+
+  List<Task> todo = [
+    Task(
+      type: Tasktype.notes,
+      title: "Study Lesson",
+      description: "Study COMP117",
+      isCompleted: false,
+    ),
+    Task(
+      type: Tasktype.contest,
+      title: "Run 5k",
+      description: "Run 5 kilometres",
+      isCompleted: false,
+    ),
+    Task(
+      type: Tasktype.calendar,
+      title: "Go to Party",
+      description: "Attend to party",
+      isCompleted: false,
+    ),
+  ];
+
+  List<Task> complated = [
+    Task(
+      type: Tasktype.contest,
+      title: "Run 5k",
+      description: "Run 5 kilometres",
+      isCompleted: false,
+    ),
+    Task(
+      type: Tasktype.calendar,
+      title: "Go to Party",
+      description: "Attend to party",
+      isCompleted: false,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemCount: todo.length,
                       itemBuilder: (context, index) {
                         return TodoItem(
-                          title: todo[index],
+                          task: todo[index],
                         );
                       },
                     ),
@@ -104,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: complated.length,
                     itemBuilder: (context, index) {
                       return TodoItem(
-                        title: complated[index],
+                        task: complated[index],
                       );
                     },
                   )),
